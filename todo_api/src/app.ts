@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import { pinoHttp } from 'pino-http';
 import { env } from './config/env.ts';
 import { authRoutes } from './modules/auth/auth.routes.ts';
-// import { todoRoutes } from './modules/todos/todo.routes.ts';
+import { todoRoutes } from './modules/todos/todo.routes.ts';
 import { errorHandler, notFoundHandler } from './shared/error-handler.ts';
 import { logger } from './shared/logger.ts';
 
@@ -23,7 +23,7 @@ export function createApp() {
     res.json({ status: 'ok', uptime: process.uptime() });
   });
   app.use('/api/v1/auth', authRoutes);
-  // app.use('/api/v1/todos', todoRoutes);
+  app.use('/api/v1/todos', todoRoutes);
 
   // --- Must be registered last ---
   app.use(notFoundHandler);
